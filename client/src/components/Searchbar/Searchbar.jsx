@@ -7,6 +7,7 @@ const Searchbar = () => {
             <input>
                 
             </input>
+            <button></button>
         </div>
     )
 };

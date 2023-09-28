@@ -16,6 +16,9 @@ function App() {
           path='/home'
           element = {<Home/>}
         />
+        <Route
+          path='/detail/:id'
+        />
       </Routes>
     </div>
   )
