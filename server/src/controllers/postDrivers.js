@@ -3,7 +3,9 @@ const { Team, Driver } = require('../db');
 
 
 const postDrivers = async ( req, res) => {
+
     const { name, lastname, description, image, nationality, birthdate, teams } = req.body;
+
     if(!teams || teams.length === 0) {
         res.status(400).json({error: 'Need at least one team'})
     }
@@ -14,9 +16,11 @@ const postDrivers = async ( req, res) => {
         description,
         image,
         nationality,
-        birthdate
+        birthdate,
+        teams,
     });
 
+    res.status(200).json({newDriver});
 
 }
 

@@ -33,6 +33,10 @@ module.exports = (sequelize) => {
     birthdate: {
       type: DataTypes.DATE,
       allowNull: false
+    },
+    teams: {
+      type: DataTypes.STRING,
+      allowNull:false,
     }
   },
   {
