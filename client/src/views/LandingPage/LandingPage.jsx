@@ -9,7 +9,7 @@ const LandingPage = () => {
             <NavLink
                 to='/home'
             >
-                <button></button>
+                <button>Click here!</button>
             </NavLink>
         </div>
     )

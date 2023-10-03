@@ -14,11 +14,12 @@ const getSearchedDrivers = async( req, res) => {
             }
             ).limit(15);
         const allResponse = [...apiResponse.data, ...dbResponse];
+        const limitedResponse = allResponse.splice(0,15);
         
         if(limitedResponse.length === 0) {
             res.status(404).json({message: '404 Not Found'});
         } else {
-            const limitedResponse = allResponse.splice(0,15);
+            
             res.status(200).json({limitedResponse});
         }
     } catch (error) {

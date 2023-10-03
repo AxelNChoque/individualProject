@@ -4,10 +4,13 @@ import style from './searchbar.module.css';
 const Searchbar = () => {
     return(
         <div>
-            <input>
+            <input
+            type='search' 
+            placeholder="###" 
+            >
                 
             </input>
-            <button></button>
+            <button>Search</button>
         </div>
     )
 };

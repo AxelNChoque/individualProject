@@ -5,9 +5,20 @@ import Cards from "../../components/Cards/Cards";
 
 const Home = () => {
     return(
-        <div>
+        <div
+            className={style.containter}
+        >
+            <div
+                className={style.navbarBox}
+            >
             <Navbar></Navbar>
-            <Cards></Cards>
+            </div>
+            <div
+                className={style.cardsBox}
+            >
+                <Cards></Cards>
+            </div>
+            
         </div>
     )
 }

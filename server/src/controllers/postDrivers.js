@@ -24,6 +24,6 @@ const postDrivers = async ( req, res) => {
 
 }
 
-exports.module = {
+module.exports = {
     postDrivers,
 }
