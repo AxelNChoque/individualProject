@@ -1,4 +1,4 @@
-import { REMOVE_DRIVER, ADD_DRIVER } from "../actions/actions-types";
+import { REMOVE_DRIVER, ADD_DRIVER, GET_DRIVERS } from "../actions/actions-types";
 
 let initialState = { drivers: [], allDrivers: []};
 
@@ -11,6 +11,12 @@ const rootReducer = (state= initialState, action) => {
                 allDrivers: action.payload
             })
         case REMOVE_DRIVER:
+            return({
+                ...state,
+                drivers: action.payload,
+                allDrivers: action.payload
+            })
+        case GET_DRIVERS:
             return({
                 ...state,
                 drivers: action.payload,
