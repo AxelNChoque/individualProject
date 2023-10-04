@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getDrivers } from "../../redux/actions/actions";
 
 const Home = () => {
-    const dispatch = useDispatch;
+    const dispatch = useDispatch();
     const [currentPage, setCurrentPage]= useState(1);
 
     const allDrivers = useSelector(state=> state.drivers)
@@ -31,7 +31,9 @@ const Home = () => {
             <div
                 className={style.cardsBox}
             >
-                <Cards></Cards>
+                <Cards
+                drivers = {currentDrivers}
+                />
             </div>
             
         </div>
