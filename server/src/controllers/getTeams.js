@@ -1,38 +1,50 @@
 const axios = require('axios');
-const { Team } = require('../models/Team');
+const { Team } = require('../db');
 
 
-const getTeams = async (req, res) => {
-    try {
+const getTeams = async () => {
+
+    const teamDB = await Team.findAll();
+
+    if(!teamDB.length) {
+        
         const response = await axios.get('http://localhost:5000/drivers');
         const { data } = response;
-
         const teams = data.map(driver => driver.teams).join(',');
         const arrayTeams = teams.split(',');
-        const uniqueTeamsSet = new Set (arrayTeams);
+        const arrTeams = arrayTeams.map(team => team.trim());
+        const nonEmptyArrTeams = arrTeams.filter(team => team !== '');
+        const uniqueTeamsSet = new Set (nonEmptyArrTeams);
         const uniqueTeams = [...uniqueTeamsSet];
 
-        await Promise.all(uniqueTeams.map( async (teamName) => {
-            const existTeam = await Team.findOne({
+        
+
+        // await Promise.all(uniqueTeams.map( async (teamName) => {
+        //     const existTeam = await Team.findOne({
+        //         where: {
+        //             name: teamName
+        //         }
+        //     });
+        //     if(!existTeam){
+        //         await Team.create(
+        //             {
+        //                 name: teamName
+        //             }
+        //         )
+        //     }
+        // }))
+
+        uniqueTeams.forEach(async teamName => {
+            await Team.findOrCreate({
                 where: {
                     name: teamName
                 }
-            });
-            if(!existTeam){
-                await Team.create(
-                    {
-                        name: teamName
-                    }
-                )
-            }
-        }))
-
-        res.status(200).json(uniqueTeams);
-
-    } catch(error) {
-        res.status(400).json({error});
+            })
+        })
+        
+    return uniqueTeams;
     }
-
+    return teamDB.map(team => team.name);
 }
 
 module.exports = {

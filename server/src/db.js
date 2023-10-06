@@ -7,9 +7,6 @@ const {
   DB_USER, DB_PASSWORD, DB_HOST,
 } = process.env;
 
-const Drivers = require('./models/Driver');
-const Teams = require('./models/Team');
-
 const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/drivers`, {
   logging: false, 
   native: false, 
@@ -32,11 +29,6 @@ let capsEntries = entries.map((entry) => [entry[0][0].toUpperCase() + entry[0].s
 sequelize.models = Object.fromEntries(capsEntries);
 
 const { Driver, Team } = sequelize.models;
-
-Drivers(sequelize);
-Teams(sequelize);
-
-
 
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);

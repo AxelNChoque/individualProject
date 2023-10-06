@@ -1,16 +1,16 @@
 const { Router } = require("express");
-const { getDriverDetail } = require('../controllers/getDriverDetail');
+const { driverDetRouter } = require('./DriverDetail');
 const { driversRouter } = require('./AllDrivers');
 const { getSearchedDrivers } = require('../controllers/getSearchedDrivers');
-const { getTeams } = require('../controllers/getTeams');
-const { postDrivers } = require('../controllers/postDrivers');
+const { teamsRouter } = require('./Teams');
+const { postDrivers } = require('../controllers/postDriver');
 
 const router = Router();
 
-router.get('/drivers/:id', getDriverDetail);
-router.get('/drivers', driversRouter);
+router.use('/drivers/:id',driverDetRouter );
+router.use('/drivers', driversRouter);
 router.get('/drivers?name.forename={name}',getSearchedDrivers);
-router.get('/teams',getTeams);
+router.use('/driversteams',teamsRouter);
 router.post('/post',postDrivers);
 
 
