@@ -25,7 +25,7 @@ module.exports = (sequelize) => {
     image: {
       type: DataTypes.STRING,
       allowNull: false,
-      defaultValue: "'https://w0.peakpx.com/wallpaper/745/990/HD-wallpaper-charles-leclerc-driver-f1-ferrari-formula-1-pilot-puma-scuderia-ferrari.jpg'"
+      defaultValue: "https://w0.peakpx.com/wallpaper/745/990/HD-wallpaper-charles-leclerc-driver-f1-ferrari-formula-1-pilot-puma-scuderia-ferrari.jpg"
     },
     nationality: {
       type: DataTypes.STRING,

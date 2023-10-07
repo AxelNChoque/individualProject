@@ -34,12 +34,13 @@ export const removeDriver = (id) => {
 }
 
 export const getDrivers = () => {
-    const endpoint = `http://localhost:5000/drivers/`;
-    return async dispatch => {
+    const endpoint = `http://localhost:5000/drivers`;
+    return async (dispatch) => {
         try {
             const response = await axios.get(endpoint);
             const { data } = response;
-            dispatch({
+            console.log(data);
+            return dispatch({
                 type:GET_DRIVERS,
                 payload: data,
             });

@@ -1,0 +1,22 @@
+.container{
+    width: 25rem;
+    height: 14rem;
+    background-color: 	#18191A;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    border-radius: 2rem;
+    border: 2px solid #393A3B;
+}
+.image{
+    margin-left: 1rem;
+    width:  10rem;
+    height: 12rem;
+    border-radius: 2rem;
+}
+.desc{
+    font-size: 10px;
+    color:#E4E6EB;
+    height: 100%;
+    cursor: default;
+}

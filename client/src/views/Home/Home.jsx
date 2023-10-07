@@ -9,14 +9,14 @@ const Home = () => {
     const dispatch = useDispatch();
     const [currentPage, setCurrentPage]= useState(1);
 
-    const allDrivers = useSelector(state=> state.drivers)
-    const driversPerPage = 9;
+    const allDrivers = useSelector((state)=> state.drivers)
+    const driversPerPage = 8;
     const lastDriverIndex = currentPage * driversPerPage;
     const firstDriverIndex = lastDriverIndex - driversPerPage;
     const currentDrivers = allDrivers.slice(firstDriverIndex, lastDriverIndex);
 
     useEffect(() => {
-        dispatch(getDrivers);
+        dispatch(getDrivers());
     },[dispatch]);
 
     return(

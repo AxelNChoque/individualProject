@@ -1,17 +1,23 @@
 import React from "react";
-import Card from "../Card/Card";
+import Card from "../Card/Card.jsx";
+import style from './cards.module.css';
+import normalizeDrivers from '../../helpers/normalization.jsx';
 
-const Cards = (props) => {
-    const { drivers } = props;
+const Cards = ({drivers}) => {
+
+    const newDrivers = normalizeDrivers(drivers);
+
     return(
-        <div>
+        <div className={style.container}>
             {
-                drivers && drivers.map( driver => {
-                    <Card
+                newDrivers.map( driver => {
+                    return <Card
                         key = {driver.id}
-                        name = {driver.name.forename}
-                        surname = {driver.name.surname}
-                        image = {driver.image.url}
+                        id = {driver.id}
+                        name = {driver.name}
+                        surname = {driver.surname}
+                        nationality= {driver.nationality}
+                        image = {driver.image}
                         teams = {driver.teams}
                     />
                 })
