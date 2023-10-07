@@ -1,10 +1,10 @@
 const axios = require('axios');
-const { Driver , Team } = require('../db');
+const { Drivers , Teams } = require('../db');
 
 const getDriverDetail = async (id) => {
 
-        const driverDB = await Driver.findByPk(id, {
-            include: Team,
+        const driverDB = await Drivers.findByPk(id, {
+            include: Teams,
         });
 
         if(driverDB) return res.status(200).json({driverDB});

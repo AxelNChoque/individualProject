@@ -1,10 +1,10 @@
 const axios = require('axios');
-const { Team } = require('../db');
+const { Teams } = require('../db');
 
 
 const getTeams = async () => {
 
-    const teamDB = await Team.findAll();
+    const teamDB = await Teams.findAll();
 
     if(!teamDB.length) {
         
@@ -35,7 +35,7 @@ const getTeams = async () => {
         // }))
 
         uniqueTeams.forEach(async teamName => {
-            await Team.findOrCreate({
+            await Teams.findOrCreate({
                 where: {
                     name: teamName
                 }

@@ -1,11 +1,11 @@
 const axios = require('axios');
-const { Driver } = require('../db');
+const { Drivers } = require('../db');
 
 const getSearchedDrivers = async( req, res) => {
     try {
         const keyword = req.query.name.toLowerCase();
         const apiResponse = await axios.get(`http://localhost:5000/drivers/?name=${keyword}`);
-        const dbResponse = await Driver.find(
+        const dbResponse = await Drivers.find(
             {
                 name: {
                     $regex: keyword,
