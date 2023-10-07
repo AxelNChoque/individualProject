@@ -7,15 +7,19 @@ const getDriverDetail = async (id) => {
             include: Teams,
         });
 
-        if(driverDB) return res.status(200).json({driverDB});
+        if(driverDB) return driverDB;
 
 
-        const response = await axios.get(`http://localhost:5000/drivers/${id}`);
-        const driverAPI = response.data;
-        if(driverAPI) {
-            res.status(200).json({driverAPI});
+        const response = await axios.get(`http://localhost:5000/drivers`);
+        const driversApi  = response.data;
+
+        const searcherDriver = driversApi.find(driver => Number(driver.id) === Number(id));
+
+
+        if(searcherDriver) {
+            return searcherDriver;
         }
-        return res.status(400).json({error: 'conductor no encontrado'});
+        throw new Error(`Not found driver with id: ${id}`);
 }
 
 module.exports = {

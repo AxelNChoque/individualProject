@@ -14,7 +14,7 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    lastname: {
+    surname: {
       type: DataTypes.STRING,
       allowNull: false,
     },
@@ -34,10 +34,6 @@ module.exports = (sequelize) => {
     birthdate: {
       type: DataTypes.DATE,
       allowNull: false
-    },
-    teams: {
-      type: DataTypes.STRING,
-      allowNull:false,
     }
   },
   {

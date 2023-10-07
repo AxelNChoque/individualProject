@@ -1,8 +1,8 @@
-const { Drivers } = require('../db');
+const { Drivers, Teams } = require('../db');
 
 
 const postDriver = async ( name,
-    lastname,
+    surname,
     description,
     image,
     nationality,
@@ -10,13 +10,21 @@ const postDriver = async ( name,
     teams ) => {
         const newDriver = await Drivers.create({
             name,
-            lastname,
+            surname,
             description,
             image,
             nationality,
-            birthdate,
-            teams,
+            birthdate
         });
+
+        teams.forEach(async (team) => {
+            const teamsDB = await Teams.findOne({
+                where: {
+                    name: team
+                }
+            });
+            await newDriver.addTeams(teamsDB);
+        })
         return newDriver;
 }
 

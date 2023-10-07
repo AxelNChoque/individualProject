@@ -4,7 +4,7 @@ const { Drivers } = require('../db');
 const path = require('path');
 const apiPath = path.join(__dirname, '../../api/db.json');
 
-const getAllDrivers = async () => {
+const getAllDrivers = async (name) => {
     
     // const response = await axios.get('http://localhost:5000/drivers');
     // const drivers = response.data;
@@ -21,6 +21,25 @@ const getAllDrivers = async () => {
             driver.image = 'https://w0.peakpx.com/wallpaper/745/990/HD-wallpaper-charles-leclerc-driver-f1-ferrari-formula-1-pilot-puma-scuderia-ferrari.jpg'
         }
     })
+
+    if(name){
+        const lowName = name.toLowerCase();
+        const driversFilterDB = DbDrivers.filter(driver => {
+            return driver.name.toLowerCase().includes(lowName) || driver.surname.toLowerCase().includes(lowName)
+        });
+        const driversFilterAPI = drivers.filter(driver => {
+            return driver.name.forename.toLowerCase().includes(lowName) || driver.name.surname.toLowerCase().includes(lowName);
+        });
+        const allFilteredDrivers = [...driversFilterDB,...driversFilterAPI];
+
+        if(!allFilteredDrivers.length){
+            throw new Error (`Not driver found with :${name}`);
+        }
+
+        const slicedFilteredDrivers = allFilteredDrivers.slice(0,15);
+
+        return slicedFilteredDrivers;
+    }
 
     return AllDrivers;
 }
