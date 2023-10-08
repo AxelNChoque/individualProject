@@ -1,4 +1,4 @@
-import { ADD_DRIVER, REMOVE_DRIVER, TEAM_FILTER, ORDER, GET_DRIVERS } from "./actions-types";
+import { ADD_DRIVER, REMOVE_DRIVER, TEAM_FILTER, ORDER, GET_DRIVERS, GET_TEAMS } from "./actions-types";
 import axios from 'axios';
 
 export const addDriver = (id) => {
@@ -39,13 +39,28 @@ export const getDrivers = () => {
         try {
             const response = await axios.get(endpoint);
             const { data } = response;
-            console.log(data);
             return dispatch({
                 type:GET_DRIVERS,
                 payload: data,
             });
         } catch(error) {
             alert('Error charging drivers');
+        }
+    }
+}
+
+export const getTeams = () => {
+    const endpoint = `http://localhost:5000/driversteams`;
+    return async dispatch => {
+        try{
+            const response = await axios.get(endpoint);
+            const { data } = response;
+            return dispatch({
+                type:GET_TEAMS,
+                payload:data,
+            });
+        } catch(error){
+            alert('Error charging teams');
         }
     }
 }

@@ -1,6 +1,10 @@
-import { REMOVE_DRIVER, ADD_DRIVER, GET_DRIVERS } from "../actions/actions-types";
+import { REMOVE_DRIVER, ADD_DRIVER, GET_DRIVERS, GET_TEAMS } from "../actions/actions-types";
 
-let initialState = { drivers: [], allDrivers: []};
+let initialState = {
+    drivers: [],
+    allDrivers: [],
+    teams:[],
+};
 
 const rootReducer = (state= initialState, action) => {
     switch(action.type){
@@ -21,6 +25,11 @@ const rootReducer = (state= initialState, action) => {
                 ...state,
                 drivers: action.payload,
                 allDrivers: action.payload
+            })
+        case GET_TEAMS:
+            return({
+                ...state,
+                teams: action.payload,
             })
         default:
             return state;

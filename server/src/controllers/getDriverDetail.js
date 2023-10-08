@@ -3,12 +3,16 @@ const { Drivers , Teams } = require('../db');
 
 const getDriverDetail = async (id) => {
 
-        const driverDB = await Drivers.findByPk(id, {
-            include: Teams,
-        });
 
-        if(driverDB) return driverDB;
+        if(!/^\d+$/.test(id)){
+            
+            const driverDB = await Drivers.findByPk(id, {
+                include: Teams,
+            });
 
+            if(driverDB) return driverDB;
+
+        }
 
         const response = await axios.get(`http://localhost:5000/drivers`);
         const driversApi  = response.data;
