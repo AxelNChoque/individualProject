@@ -3,7 +3,7 @@ const { postDriver } = require('../controllers/postDriver');
 const postDriverHandler = async (req, res) => {
     try {
         
-        const { name, surname, description, image, nationality, birthdate, teams } = req.body;
+        const { name, surname, description, image, nationality, dob, teams } = req.body;
         if(!teams || teams.length === 0) {
             res.status(400).json({error: 'Need at least one team'})
         }
@@ -13,7 +13,7 @@ const postDriverHandler = async (req, res) => {
             description,
             image,
             nationality,
-            birthdate,
+            dob,
             teams,
         );
         res.status(201).json(newDriver);

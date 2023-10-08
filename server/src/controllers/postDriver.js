@@ -6,7 +6,7 @@ const postDriver = async ( name,
     description,
     image,
     nationality,
-    birthdate,
+    dob,
     teams ) => {
         const newDriver = await Drivers.create({
             name,
@@ -14,7 +14,7 @@ const postDriver = async ( name,
             description,
             image,
             nationality,
-            birthdate
+            dob
         });
 
         teams.forEach(async (team) => {
