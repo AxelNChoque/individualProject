@@ -23,9 +23,6 @@ const validate = (input) => {
     }
 
     //img
-    if(input.image.length === 0){
-        error.image = "Image field cannot be empty";
-    }
 
     //dob
     if (!input.dob) {

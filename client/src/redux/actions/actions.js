@@ -1,11 +1,11 @@
-import { ADD_DRIVER, REMOVE_DRIVER, TEAM_FILTER, ORDER, GET_DRIVERS, GET_TEAMS } from "./actions-types";
+import { ADD_DRIVER, REMOVE_DRIVER, TEAM_FILTER, ORDER, GET_DRIVERS, GET_TEAMS, PAGINATE } from "./actions-types";
 import axios from 'axios';
 
-export const addDriver = (id) => {
-    const endpoint = `http://localhost:5000/drivers/${id}`;
+export const addDriver = (state) => {
+
     return async dispatch => {
         try {
-            const response = await axios.get(endpoint, id);
+            const response = await axios.post('http://localhost:5000/post/', state);
             const { data } = response;
             dispatch({
                 type: ADD_DRIVER,
@@ -61,6 +61,19 @@ export const getTeams = () => {
             });
         } catch(error){
             alert('Error charging teams');
+        }
+    }
+}
+
+export const paginate = (pos) => {
+    return async dispatch => {
+        try {
+            dispatch({
+                type:PAGINATE,
+                payload: pos
+            })
+        } catch(err) {
+            alert(err);
         }
     }
 }

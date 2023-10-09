@@ -4,3 +4,4 @@ export const TEAM_FILTER = 'TEAM_FILTER';
 export const ORDER = 'ORDER';
 export const GET_DRIVERS = 'GET_DRIVERS';
 export const GET_TEAMS = 'GET_TEAMS';
+export const PAGINATE = 'PAGINATE';

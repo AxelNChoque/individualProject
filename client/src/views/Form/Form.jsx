@@ -4,6 +4,7 @@ import { NavLink } from "react-router-dom";
 import { getTeams } from "../../redux/actions/actions";
 import validate from '../../helpers/validate';
 import style from './form.module.css';
+import {addDriver} from '../../redux/actions/actions';
 
 const Form = () => {
     const dispatch = useDispatch();
@@ -19,6 +20,26 @@ const Form = () => {
         description:'',
         teams:'',
     })
+    const initialState = {
+        name: '',
+        surname: '',
+        nationality: '',
+        image: '',
+        dob: '',
+        description: '',
+        teams: [],
+    };
+
+    const initialErrors = {
+        name: '',
+        surname: '',
+        nationality: '',
+        image: '',
+        dob: '',
+        description: '',
+        teams: '',
+    };
+
 
     useEffect(() => {
         dispatch(getTeams());
@@ -52,7 +73,13 @@ const Form = () => {
                     ...newDriver,
                     teams:[...uniqueMemoryValues]
                 })
-        
+
+                setErrors(
+                    validate({
+                        ...newDriver,
+                        teams: [...uniqueMemoryValues]
+                    })
+                )
                 return updatedMemory;
             });
 
@@ -61,11 +88,18 @@ const Form = () => {
                 ...newDriver,
                 [event.target.name]: event.target.value
             })
+            setErrors(
+                validate({
+                    ...newDriver,
+                    [event.target.name]: event.target.value
+                })
+            )
         }
         
     }
 
     const countHandler = event => {
+        event.preventDefault();
         const { value } = event.target;
     
         if (!Number(value)) {
@@ -90,8 +124,26 @@ const Form = () => {
                 teams:[...newDriver.teams]
             })
         )
-        console.log(errors);
+        let errorFLag = false;
 
+        for(let error in errors){
+            if(errors[error] === '') {
+                errorFLag = false;
+            } else {
+                errorFLag = true;
+                break;
+            }
+        }
+
+        if(!errorFLag){
+            dispatch(addDriver(newDriver))
+            setNewDriver(initialState);
+            setErrors(initialErrors);
+            setQuantityTeams(1);
+            setMemory({});
+        } else {
+            alert('Error adding new driver');
+        }
     }
     
 
@@ -127,6 +179,7 @@ const Form = () => {
                     name='name'
                     onChange={changeHandler}
                     type="text"
+                    value={newDriver.name}
                 />
                 {
                     <label className={style.errors}> {errors.name || "\u00A0"} </label>
@@ -146,6 +199,7 @@ const Form = () => {
                     name='surname'
                     onChange={changeHandler}
                     type="text"
+                    value={newDriver.surname}
                 />
 
                 {
@@ -163,6 +217,7 @@ const Form = () => {
                     name='nationality'
                     onChange={changeHandler}
                     type="text"
+                    value={newDriver.nationality}
                 />
                 {
                     <label className={style.errors}> {errors.nationality || "\u00A0"} </label>
@@ -176,6 +231,7 @@ const Form = () => {
                     name='image'
                     onChange={changeHandler}
                     type="text"
+                    value={newDriver.image}
                 />
 
                 {
@@ -190,6 +246,7 @@ const Form = () => {
                     name='dob'
                     onChange={changeHandler}
                     type="date"
+                    value={newDriver.dob}
                 />
                 {
                     <label className={style.errors}> {errors.dob || "\u00A0"} </label>
@@ -205,6 +262,7 @@ const Form = () => {
                     name='description'
                     onChange={changeHandler}
                     type="text"
+                    value={newDriver.description}
                 />
                 {
                     <label className={style.errors}> {errors.description || "\u00A0"} </label>
@@ -226,6 +284,7 @@ const Form = () => {
                             key={index}
                             name={`team${index}`}
                             onChange={changeHandler}
+                            value={newDriver.teams[index]}
                         >
                             <option value=''>Select Team</option>
                             {
@@ -240,10 +299,11 @@ const Form = () => {
                 {
                     <label className={style.errors}> {errors.teams || "\u00A0"} </label>
                 }
-                <input 
+                <button 
                 type="submit"
                 >
-                </input>
+                    Create Driver
+                </button>
                     </div>
 
             </form>

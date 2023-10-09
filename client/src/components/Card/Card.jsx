@@ -15,6 +15,7 @@ const Card = (props) => {
             <p>{`${name} ${surname}`}</p>
             <p>{nationality}</p>
             <p>{teams}</p>
+            <p>{id}</p>
             </div>
         </div>
     )
