@@ -1,0 +1,57 @@
+.formContainer {
+    width: 100%;
+    height: 100vh;
+
+}
+
+.menuContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.form {
+    width: 35rem;
+    padding: 20px;
+    background-color: red;
+    height: 40rem; 
+}
+
+.form .completeName {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.form .completeName .names {
+    width: 48%;
+}
+
+.form .buttons {
+    height: 1rem;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr ;
+    grid-gap:10px;
+    
+
+}
+
+.form input,
+.form select {
+ 
+    width: 100%;
+    
+}
+.form input,
+.form label,
+.form select {
+    margin-top: 15px;
+}
+
+
+.desc {
+    height: 3rem;
+}
+.form .title {
+    margin-top: 10rem;
+}

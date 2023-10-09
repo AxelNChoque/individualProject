@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { getTeams } from "../../redux/actions/actions";
 import validate from '../../helpers/validate';
+import style from './form.module.css';
 
 const Form = () => {
     const dispatch = useDispatch();
@@ -96,18 +97,30 @@ const Form = () => {
 
 
     return(
-        <div>
+        <div className={style.formContainer}>
 
             <NavLink
                 to='/home'
             >
                 <button>Home</button>
             </NavLink>
-
+            <div
+                className={style.menuContainer}
+            >
             <form
                 onSubmit={submitHandler}
+                className={style.form}
             >
-                <label>
+                    <div className={style.formElements}>
+                    <div
+                    className={style.completeName}
+                >
+                    <div
+                        className={style.names}
+                    >
+                    <label
+                        className={style.title}
+                    >
                     Name
                 </label>
                 <input 
@@ -116,10 +129,17 @@ const Form = () => {
                     type="text"
                 />
                 {
-                    errors.name ? <label>{errors.name}</label> : ''
+                    <label className={style.errors}> {errors.name || "\u00A0"} </label>
                 }
 
-                <label>
+                    </div>
+                    <div
+                        className={style.names}
+                    >
+                        
+                    <label
+                        className={style.title}
+                    >
                     Surname
                 </label>
                 <input 
@@ -127,11 +147,16 @@ const Form = () => {
                     onChange={changeHandler}
                     type="text"
                 />
-                {
-                    errors.surname ? <label>{errors.surname}</label> : ''
-                }
 
-                <label>
+                {
+                    <label className={style.errors}> {errors.surname || "\u00A0"} </label>
+                }
+                    </div>
+                </div>
+
+                <label
+                        className={style.title}
+                >
                     Nationality    
                 </label>
                 <input 
@@ -140,10 +165,11 @@ const Form = () => {
                     type="text"
                 />
                 {
-                    errors.nationality ? <label>{errors.nationality}</label> : ''
+                    <label className={style.errors}> {errors.nationality || "\u00A0"} </label>
                 }
-
-                <label>
+                <label
+                    className={style.title}
+                >
                     Image
                 </label>
                 <input 
@@ -151,11 +177,13 @@ const Form = () => {
                     onChange={changeHandler}
                     type="text"
                 />
-                {
-                    errors.image ? <label>{errors.image}</label> : ''
-                }
 
-                <label>
+                {
+                    <label className={style.errors}> {errors.image || "\u00A0"} </label>
+                }
+                <label
+                    className={style.title}
+                >
                     Birthdate                  
                 </label>
                 <input 
@@ -164,21 +192,25 @@ const Form = () => {
                     type="date"
                 />
                 {
-                    errors.dob ? <label>{errors.dob}</label> : ''
-                }
+                    <label className={style.errors}> {errors.dob || "\u00A0"} </label>
+                }                
 
-                <label>
+                <label
+                    className={style.title}
+                >
                     Description
                 </label>
-                <input 
+                <input
+                    className={style.desc} 
                     name='description'
                     onChange={changeHandler}
                     type="text"
                 />
                 {
-                    errors.description ? <label>{errors.description}</label> : ''
+                    <label className={style.errors}> {errors.description || "\u00A0"} </label>
                 }
 
+                <div className= {style.buttons}>
                 <button
                     value={0}
                     onClick={countHandler}
@@ -187,6 +219,7 @@ const Form = () => {
                     value={1}
                     onClick={countHandler}
                 >+</button>
+                </div>
                 {
                     Array.from({ length: quantityTeams }, (_, index) => (
                         <select
@@ -205,11 +238,16 @@ const Form = () => {
                 }   
 
                 {
-                    errors.teams ? <label>{errors.teams}</label> : ''
+                    <label className={style.errors}> {errors.teams || "\u00A0"} </label>
                 }
-                <input type="submit"></input>
+                <input 
+                type="submit"
+                >
+                </input>
+                    </div>
 
             </form>
+            </div>
         </div>
     )
 }
