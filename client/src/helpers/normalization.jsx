@@ -29,7 +29,7 @@ const normalizeDrivers = driversArray => {
                     normalizedDriver.teams.push(team.name);
                 }
             });
-        } else if (driver.teams) {
+        } else if (driver.teams !== undefined) {
             normalizedDriver.teams = driver.teams.split(", ").map(team => team.trim());
         }
 

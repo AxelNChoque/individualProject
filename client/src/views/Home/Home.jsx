@@ -3,54 +3,68 @@ import style from './home.module.css';
 import Navbar from "../../components/Navbar/Navbar";
 import Cards from "../../components/Cards/Cards";
 import { useDispatch, useSelector } from "react-redux";
-import { getDrivers, paginate } from "../../redux/actions/actions";
+import { filter, getDrivers, getTeams, paginate } from "../../redux/actions/actions";
 
 const Home = () => {
-    const items = 8;
+
     const dispatch = useDispatch();
+
+    const currentDrivers = useSelector(state => state.drivers);
     const currentPage = useSelector(state => state.currentPage);
-    const allDrivers = useSelector(state => state.drivers);
-    const currentDrivers = allDrivers.splice(currentPage, items);
+    const lastPage = useSelector(state => state.lastPage);
+    const allTeams = useSelector(state => state.teams);
     useEffect(() => {
         dispatch(getDrivers());
+        dispatch(getTeams());
     }, [dispatch]);
-
 
     if (!Array.isArray(currentDrivers) || currentDrivers.length === 0) {
         return <div>Cargando...</div>;
+
     }
 
-
+    const filterPerTeam = event => {
+        console.log(event);
+        dispatch(filter(event));
+    }
     
 
-    const paginateDrivers = (event, page) => {
-        event.preventDefault();
-        dispatch(paginate(page));
+    const paginateDrivers = event => {
+        dispatch(paginate(event.target.name));
     }
 
     return (
         <div className={style.containter}>
+
             <div className={style.navbarBox}>
-                <Navbar></Navbar>
+                <Navbar
+                    allTeams={allTeams}
+                    onChange={filterPerTeam}
+                ></Navbar>
             </div>
+
             <div className={style.cardsBox}>
                 <Cards drivers={currentDrivers} />
             </div>
+
             <div>
-                <button
-                    name='prev'
-                    onClick={e => paginateDrivers(e, currentPage - 1)}
-                    disabled={currentPage === 1}
+
+                <button 
+                    name='prev' 
+                    onClick={paginateDrivers}
+                    disabled= { currentPage === 0}
                 >
                     -
                 </button>
-                <button
-                    name='next'
-                    onClick={e => paginateDrivers(e, currentPage + 1)}
-                    disabled={currentPage * 8 >= allDrivers.length}
+            
+                <button 
+                    name='next' 
+                    onClick={paginateDrivers}
+                    disabled={lastPage === true}
                 >
                     +
                 </button>
+      
             </div>
         </div>
     );
