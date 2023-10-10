@@ -1,4 +1,4 @@
-import { ADD_DRIVER, REMOVE_DRIVER, TEAM_FILTER, ORDER, GET_DRIVERS, GET_TEAMS, PAGINATE, FILTER } from "./actions-types";
+import { ADD_DRIVER, REMOVE_DRIVER, ORDER, GET_DRIVERS, GET_TEAMS, PAGINATE, FILTER } from "./actions-types";
 import axios from 'axios';
 
 export const addDriver = (state) => {
@@ -86,6 +86,19 @@ export const filter = team => {
                 payload:team
             })
         } catch(err){
+            alert(err);
+        }
+    }
+}
+
+export const orderDrivers = ord => {
+    return async dispatch => {
+        try {
+            dispatch({
+                type:ORDER,
+                payload: ord
+            })
+        } catch (err) {
             alert(err);
         }
     }

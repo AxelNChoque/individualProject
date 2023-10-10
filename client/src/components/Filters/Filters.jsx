@@ -1,11 +1,16 @@
 import React from "react";
 
-const Filters = ({allTeams, onChange}) => {
+const Filters = ({allTeams, filter, order}) => {
 
-    const handleTeamChange = (event) => {
+    const handleTeamChange = event => {
         const selectedTeam = event.target.value;
-        onChange(selectedTeam);
+        filter(selectedTeam);
     };
+
+    const handleOrder = event => {
+        const ord = event.target.value;
+        order(ord);
+    }
 
     return(
         <div>
@@ -19,9 +24,23 @@ const Filters = ({allTeams, onChange}) => {
                             })
                     }
             </select>
-            <select>
-                <option>
-                    asc**
+            <select
+                onChange={handleOrder}
+            >
+                <option
+                    value=''
+                >
+                    -
+                </option>
+                <option
+                    value='asc'
+                >
+                    A-Z
+                </option>
+                <option
+                    value='des'
+                >
+                    Z-A
                 </option>
             </select>
         </div>

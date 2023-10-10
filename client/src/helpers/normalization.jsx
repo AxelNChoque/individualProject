@@ -7,6 +7,7 @@ const normalizeDrivers = driversArray => {
             name: '',
             surname: '',
             image: '',
+            dob: driver.dob,
             nationality: driver.nationality,
             description: driver.description,
             teams: []

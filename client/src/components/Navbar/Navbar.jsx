@@ -5,7 +5,7 @@ import Filters from "../Filters/Filters";
 import { NavLink } from "react-router-dom";
 
 
-const Navbar = ({allTeams, onChange}) => {
+const Navbar = ({allTeams, filter, order}) => {
     return(
         <div>
             <NavLink
@@ -17,7 +17,8 @@ const Navbar = ({allTeams, onChange}) => {
             <Searchbar/>
             <Filters
                 allTeams = {allTeams}
-                onChange = {onChange}
+                filter = {filter}
+                order = {order}
             />
         </div>
     )

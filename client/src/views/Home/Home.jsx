@@ -3,7 +3,7 @@ import style from './home.module.css';
 import Navbar from "../../components/Navbar/Navbar";
 import Cards from "../../components/Cards/Cards";
 import { useDispatch, useSelector } from "react-redux";
-import { filter, getDrivers, getTeams, paginate } from "../../redux/actions/actions";
+import { filter, getDrivers, getTeams, orderDrivers, paginate } from "../../redux/actions/actions";
 
 const Home = () => {
 
@@ -11,26 +11,24 @@ const Home = () => {
 
     const currentDrivers = useSelector(state => state.drivers);
     const currentPage = useSelector(state => state.currentPage);
-    const lastPage = useSelector(state => state.lastPage);
     const allTeams = useSelector(state => state.teams);
     useEffect(() => {
         dispatch(getDrivers());
         dispatch(getTeams());
     }, [dispatch]);
 
-    if (!Array.isArray(currentDrivers) || currentDrivers.length === 0) {
-        return <div>Cargando...</div>;
 
-    }
 
     const filterPerTeam = event => {
-        console.log(event);
         dispatch(filter(event));
     }
     
 
     const paginateDrivers = event => {
         dispatch(paginate(event.target.name));
+    }
+    const order = event => {
+        dispatch(orderDrivers(event));
     }
 
     return (
@@ -39,7 +37,8 @@ const Home = () => {
             <div className={style.navbarBox}>
                 <Navbar
                     allTeams={allTeams}
-                    onChange={filterPerTeam}
+                    filter={filterPerTeam}
+                    order={order}
                 ></Navbar>
             </div>
 
@@ -52,7 +51,6 @@ const Home = () => {
                 <button 
                     name='prev' 
                     onClick={paginateDrivers}
-                    disabled= { currentPage === 0}
                 >
                     -
                 </button>
@@ -60,7 +58,6 @@ const Home = () => {
                 <button 
                     name='next' 
                     onClick={paginateDrivers}
-                    disabled={lastPage === true}
                 >
                     +
                 </button>
