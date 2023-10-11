@@ -1,9 +1,10 @@
-import { REMOVE_DRIVER, ADD_DRIVER, GET_DRIVERS, GET_TEAMS, PAGINATE, FILTER, ORDER } from "../actions/actions-types";
+import { REMOVE_DRIVER, ADD_DRIVER, GET_DRIVERS, GET_TEAMS, PAGINATE, FILTER, ORDER, DETAIL } from "../actions/actions-types";
 
 let initialState = {
     drivers: [],
     allDrivers: [],
     teams:[],
+    driver:{},
     currentPage: 0,
     filteredDrivers: [],
     filter: false,
@@ -11,7 +12,6 @@ let initialState = {
     order: false,
     orderedDrivers: []
 };
-
 const rootReducer = (state= initialState, action) => {
     const items = 8;
     
@@ -43,6 +43,11 @@ const rootReducer = (state= initialState, action) => {
             return({
                 ...state,
                 teams: action.payload,
+            })
+        case DETAIL:
+            return({
+                ...state,
+                driver: action.payload
             })
         case PAGINATE:
             const nextPage = state.currentPage + 1;

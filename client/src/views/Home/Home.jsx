@@ -10,14 +10,16 @@ const Home = () => {
     const dispatch = useDispatch();
 
     const currentDrivers = useSelector(state => state.drivers);
-    const currentPage = useSelector(state => state.currentPage);
     const allTeams = useSelector(state => state.teams);
     useEffect(() => {
         dispatch(getDrivers());
         dispatch(getTeams());
     }, [dispatch]);
 
+    if (!Array.isArray(currentDrivers) || currentDrivers.length === 0) {
+        return <div>Loading...</div>;
 
+    }
 
     const filterPerTeam = event => {
         dispatch(filter(event));

@@ -13,12 +13,12 @@ const normalizeDrivers = driversArray => {
             teams: []
         };
 
-        if (driver.surname) {
+        if (driver.surname !== undefined) {
             normalizedDriver.name = driver.name;
             normalizedDriver.surname = driver.surname;
         } else {
-            normalizedDriver.name = driver.name.forename;
-            normalizedDriver.surname = driver.name.surname;
+            normalizedDriver.name = driver.name?.forename;
+            normalizedDriver.surname = driver.name?.surname;
         }
 
         normalizedDriver.image = driver.image && driver.image.url ? driver.image.url : driver.image;

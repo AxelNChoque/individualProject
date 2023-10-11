@@ -1,4 +1,4 @@
-import { ADD_DRIVER, REMOVE_DRIVER, ORDER, GET_DRIVERS, GET_TEAMS, PAGINATE, FILTER } from "./actions-types";
+import { ADD_DRIVER, REMOVE_DRIVER, ORDER, GET_DRIVERS, GET_TEAMS, PAGINATE, FILTER, DETAIL } from "./actions-types";
 import axios from 'axios';
 
 export const addDriver = (state) => {
@@ -99,6 +99,22 @@ export const orderDrivers = ord => {
                 payload: ord
             })
         } catch (err) {
+            alert(err);
+        }
+    }
+}
+
+export const detailDriver = id => {
+    const endpoint = `http://localhost:5000/drivers/`;
+    return async dispatch => {
+        try {
+            const response = await axios.get(`${endpoint}${id}`);
+            const { data } = response;
+            return dispatch({
+                type:DETAIL,
+                payload: data,
+            })
+        }catch (err) {
             alert(err);
         }
     }

@@ -1,46 +1,40 @@
-import axios from "axios";
-import React, { useState } from "react";
-import { useParams } from "react-router-dom";
+import React, { useEffect } from "react";
 import normalizeDrivers from "../../helpers/normalization";
+import { useDispatch, useSelector } from "react-redux";
+import { detailDriver } from "../../redux/actions/actions";
+import { NavLink, useParams } from "react-router-dom";
 
 
 const Detail = () => {
-    let { id } = useParams();
-    let [driver, setDriver] = useState();
+    const dispatch = useDispatch();
+    const { id } = useParams();
+    useEffect(() => {
+        dispatch(detailDriver(id));
 
-    React.useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await axios.get(`http://localhost:5000/drivers/${id}`);
-                const { data } = response;
+    }, [dispatch]);
+    const driver = useSelector(state => state.driver);
+    const driverArray = [];
+    driverArray.push(driver);
+    console.log(driverArray);
+    const newDriver = normalizeDrivers(driverArray);
+    const finalDriver = newDriver[0];
     
-                if (data.name) {
-                    setDriver(data);
-                } else {
-                    window.alert('No hay personajes con ese ID');
-                }
-            } catch (error) {
-                console.error('Error al obtener datos del servidor:', error);
-           }
-        };
-    
-        fetchData();
-    
-        return () => {
-            setDriver({});
-        };
-    }, [id]);
+        if (!newDriver) {
+        return <div>Loading...</div>;
+    }
 
-     console.log(driver);
-    const newDriver = normalizeDrivers([driver]);
-    console.log(newDriver);
     return(
         <div>
-            {/* <h2>Name: {`${newDriver.name} ${newDriver.surname}`}</h2>
-            <h2>Nationalirt: {newDriver.nationality}</h2>
-            <h2>Teams: {newDriver.teams}</h2>
-            <h2>Description: {newDriver.description}</h2>
-            <img src={newDriver.image} alt={newDriver.name} />  */}
+            <NavLink
+                to='/home'
+            >
+                Home
+            </NavLink>
+            <h2>Name: {`${finalDriver.name} ${finalDriver.surname}`}</h2>
+            <h2>Nationalirt: {finalDriver.nationality}</h2>
+            <h2>Teams: {finalDriver.teams}</h2>
+            <h2>Description: {finalDriver.description}</h2>
+            <img src={finalDriver.image} alt={finalDriver.name} /> 
         </div>
     )
 };
