@@ -1,5 +1,5 @@
 .container{
-    width: 25rem;
+    width: 28rem;
     height: 14rem;
     background-color: 	#18191A;
     display: grid;
@@ -16,12 +16,14 @@
 }
 .desc{
     font-size: 1rem;
-    color:#E4E6EB;
-    height: 100%;
+    color:#B3B3A4;
     cursor: default;
+    margin-right: 100px;
+    text-align: center;
 }
 
 .name {
     color: #E4E6EB;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
+    cursor: default;
 }

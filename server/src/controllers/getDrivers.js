@@ -6,8 +6,6 @@ const apiPath = path.join(__dirname, '../../api/db.json');
 
 const getAllDrivers = async (name) => {
     
-    // const response = await axios.get('http://localhost:5000/drivers');
-    // const drivers = response.data;
     
     const ApiDrivers = await fs.readFileSync(apiPath, 'utf-8');
     const {drivers} = JSON.parse(ApiDrivers);
@@ -15,6 +13,7 @@ const getAllDrivers = async (name) => {
     const DbDrivers = await Drivers.findAll({
         include: Teams,
     });
+
 
     const AllDrivers = [...DbDrivers,...drivers];
 

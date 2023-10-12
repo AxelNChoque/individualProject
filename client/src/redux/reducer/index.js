@@ -120,9 +120,10 @@ const rootReducer = (state= initialState, action) => {
             // })
         case FILTER:
             
-            const driverss = [...state.allDrivers];
+            let driverss = [];
             const team = action.payload;
             if(state.order){
+                driverss = [...state.allDriversBackUp];
                 if(team === '') return {
                 ...state,
                 drivers: state.orderedDrivers.slice(0,items),
@@ -130,6 +131,7 @@ const rootReducer = (state= initialState, action) => {
                 search:false
             };
             } else {
+                driverss = [...state.allDriversBackUp];
                 if(team === '') return {
                 ...state,
                 drivers: state.allDriversBackUp.slice(0,items),

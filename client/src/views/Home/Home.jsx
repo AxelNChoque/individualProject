@@ -4,9 +4,9 @@ import Navbar from "../../components/Navbar/Navbar";
 import Cards from "../../components/Cards/Cards";
 import { useDispatch, useSelector } from "react-redux";
 import { filter, getDrivers, getTeams, orderDrivers, paginate, searchDriver } from "../../redux/actions/actions";
+import normalizeDrivers from "../../helpers/normalization";
 
 const Home = () => {
-
     const dispatch = useDispatch();
 
     const currentDrivers = useSelector(state => state.drivers);
@@ -36,6 +36,8 @@ const Home = () => {
         dispatch(searchDriver(e));
     }
 
+    const normalizedCurrentDrivers = normalizeDrivers(currentDrivers);
+
     return (
         <div className={style.containter}>
 
@@ -49,7 +51,7 @@ const Home = () => {
             </div>
 
             <div className={style.cardsBox}>
-                <Cards drivers={currentDrivers} />
+                <Cards drivers={normalizedCurrentDrivers} />
             </div>
 
             <div

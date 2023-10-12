@@ -3,6 +3,7 @@ import normalizeDrivers from "../../helpers/normalization";
 import { useDispatch, useSelector } from "react-redux";
 import { detailDriver } from "../../redux/actions/actions";
 import { NavLink, useParams } from "react-router-dom";
+import style from './detail.module.css';
 
 
 const Detail = () => {
@@ -25,17 +26,53 @@ const Detail = () => {
     }
 
     return(
-        <div>
-            <NavLink
+        <div
+            className={style.container}
+        >
+            <div
+                className={style.nav}
+            >
+                <NavLink
                 to='/home'
             >
-                Home
+                <button
+                    className={style.button}
+                >
+                    Home
+                </button>
             </NavLink>
-            <h2>Name: {`${finalDriver.name} ${finalDriver.surname}`}</h2>
-            <h2>Nationalirt: {finalDriver.nationality}</h2>
-            <h2>Teams: {finalDriver.teams}</h2>
-            <h2>Description: {finalDriver.description}</h2>
-            <img src={finalDriver.image} alt={finalDriver.name} /> 
+            </div>
+            <div
+                className={style.downbox}
+            >
+                <div
+                className={style.detailContainer}
+            >
+                <h2
+                className={style.name}
+            >Name: {`${finalDriver.name} ${finalDriver.surname}`}</h2>
+            <div
+                className={style.desc}
+            >
+            <p>Nationality: {finalDriver.nationality}</p>
+
+                 <p> Teams:  {finalDriver.teams ? finalDriver.teams.map(team => {
+                        return `${team}  `         
+                    }) : ''}  
+                </p> 
+
+            <p>Description: {finalDriver.description}</p>
+            <div
+                className={style.imgContainer}
+            >
+                <img 
+                className={style.img}
+            src={finalDriver.image} alt={finalDriver.name} /> 
+            </div>
+            </div>
+            </div>
+            </div>
+            
         </div>
     )
 };

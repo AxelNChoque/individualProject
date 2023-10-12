@@ -45,7 +45,7 @@ const Form = () => {
         dispatch(getTeams());
     },[dispatch]);
 
-
+    
     const [newDriver, setNewDriver] = useState({
         name:'',
         surname:'',
@@ -55,6 +55,7 @@ const Form = () => {
         description:'',
         teams:[],
     })
+    
 
     const changeHandler = event => {
         const {name, value} = event.target;
