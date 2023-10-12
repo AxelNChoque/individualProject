@@ -17,12 +17,7 @@ const getAllDrivers = async (name) => {
     });
 
     const AllDrivers = [...DbDrivers,...drivers];
-    
-    AllDrivers.forEach(driver => {
-        if(!driver.image){
-            driver.image = 'https://w0.peakpx.com/wallpaper/745/990/HD-wallpaper-charles-leclerc-driver-f1-ferrari-formula-1-pilot-puma-scuderia-ferrari.jpg'
-        }
-    })
+
 
     if(name){
         const lowName = name.toLowerCase();

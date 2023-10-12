@@ -3,23 +3,51 @@ import style from './navbar.module.css'
 import Searchbar from "../Searchbar/Searchbar";
 import Filters from "../Filters/Filters";
 import { NavLink } from "react-router-dom";
+import F1Logo from "../../assets/F1.svg";
 
 
-const Navbar = ({allTeams, filter, order}) => {
+const Navbar = ({allTeams, filter, order, search}) => {
     return(
         <div>
-            <NavLink
+
+            <div 
+                className={style.newDriverButton}
+            >
+                            <img
+                src={F1Logo}
+                className= {style.logo}
+            />
+            <div
+                
+                className={style.buttonContainer}
+            >
+                <NavLink
                 to='/newdriver'
             >
-                <button>New driver</button>
+                <button
+                    className={style.button}
+                >
+                    New driver</button>
             </NavLink>
             
-            <Searchbar/>
-            <Filters
-                allTeams = {allTeams}
-                filter = {filter}
-                order = {order}
-            />
+            </div>
+            
+            </div>
+            <div
+                className={style.searchFilterContainer}
+            >
+                <Searchbar
+                className= {style.searchbar}
+                search = {search}
+                />
+            
+                <Filters
+                    allTeams = {allTeams}
+                    filter = {filter}
+                    order = {order}
+                />
+            </div>
+            
         </div>
     )
 };

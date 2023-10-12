@@ -11,11 +11,25 @@ const Card = (props) => {
             >
                 <img className={style.image} src={image} alt={surname}/>
             </NavLink>
-            <div className={style.desc}>
-            <p>{`${name} ${surname}`}</p>
+            <div className={style.descBox}>
+            <p
+                className={style.name}
+            >{`${name} ${surname}`}</p>
+            <div
+                className={style.desc}
+            >
+                
             <p>{nationality}</p>
-            <p>{teams}</p>
-            <p>{id}</p>
+
+                <p>
+                    {
+                    teams.map(team => {
+                        return `${team}  `         
+                    })
+                }
+                </p>    
+            </div>
+
             </div>
         </div>
     )

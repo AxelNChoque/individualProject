@@ -15,8 +15,13 @@
     border-radius: 2rem;
 }
 .desc{
-    font-size: 10px;
+    font-size: 1rem;
     color:#E4E6EB;
     height: 100%;
     cursor: default;
+}
+
+.name {
+    color: #E4E6EB;
+    font-size: 1.5rem;
 }

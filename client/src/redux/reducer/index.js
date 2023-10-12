@@ -1,4 +1,4 @@
-import { REMOVE_DRIVER, ADD_DRIVER, GET_DRIVERS, GET_TEAMS, PAGINATE, FILTER, ORDER, DETAIL } from "../actions/actions-types";
+import { REMOVE_DRIVER, ADD_DRIVER, GET_DRIVERS, GET_TEAMS, PAGINATE, FILTER, ORDER, DETAIL, SEARCH_NAME } from "../actions/actions-types";
 
 let initialState = {
     drivers: [],
@@ -6,14 +6,16 @@ let initialState = {
     teams:[],
     driver:{},
     currentPage: 0,
+    searchedDrivers: [],
     filteredDrivers: [],
     filter: false,
     allDriversBackUp: [],
     order: false,
-    orderedDrivers: []
+    orderedDrivers: [],
+    search:false
 };
 const rootReducer = (state= initialState, action) => {
-    const items = 8;
+    const items = 9;
     
     switch(action.type){
         case ADD_DRIVER: 
@@ -49,10 +51,31 @@ const rootReducer = (state= initialState, action) => {
                 ...state,
                 driver: action.payload
             })
+        case SEARCH_NAME:
+            const searched = action.payload;
+
+            return({
+                ...state,
+                drivers: searched.slice(0,items),
+                searchedDrivers: searched,
+                search:true
+            })
         case PAGINATE:
             const nextPage = state.currentPage + 1;
             const prevPage = state.currentPage - 1;
             const firstIndex = action.payload === "next"? nextPage * items:prevPage * items
+
+            if(state.search) {
+                if(action.payload === "next" && firstIndex >= state.searchedDrivers.length) return state
+                else if(action.payload === "prev" && prevPage < 0) return state
+
+                return{
+                    ...state,
+                    drivers: [...state.searchedDrivers].splice(firstIndex,items),
+                    currentPage: action.payload === "next"? nextPage : prevPage
+                }
+            }
+
 
             if(state.filter){
                 if(action.payload === "next" && firstIndex >= state.filteredDrivers.length) return state
@@ -103,13 +126,15 @@ const rootReducer = (state= initialState, action) => {
                 if(team === '') return {
                 ...state,
                 drivers: state.orderedDrivers.slice(0,items),
-                filter: false
+                filter: false,
+                search:false
             };
             } else {
                 if(team === '') return {
                 ...state,
                 drivers: state.allDriversBackUp.slice(0,items),
-                filter: false
+                filter: false,
+                search:false
             };
             }
 
@@ -156,6 +181,7 @@ const rootReducer = (state= initialState, action) => {
                 drivers: filteredDrivers.slice(0,items),
                 filteredDrivers: filteredDrivers,
                 filter:true,
+                search:false
             })
 
         case ORDER:
@@ -168,7 +194,8 @@ const rootReducer = (state= initialState, action) => {
                 ...state,
                 drivers: state.filteredDrivers.slice(0,items),
                 allDrivers: state.allDriversBackUp,
-                order:false
+                order:false,
+                search:false
             }
             } else {
                 allDrivers = [...state.allDrivers];
@@ -176,7 +203,8 @@ const rootReducer = (state= initialState, action) => {
                 ...state,
                 drivers: state.allDriversBackUp.slice(0,items),
                 allDrivers: state.allDriversBackUp,
-                order:false
+                order:false,
+                search:false
             }}
 
 
@@ -234,6 +262,7 @@ const rootReducer = (state= initialState, action) => {
             currentPage:0,
             order:true,
             orderedDrivers: orderByName,
+            search:false
         }
 
 

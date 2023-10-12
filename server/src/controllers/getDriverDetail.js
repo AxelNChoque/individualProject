@@ -6,12 +6,9 @@ const getDriverDetail = async (id) => {
 
         if(!/^\d+$/.test(id)){
             
-            const driverDB = await Drivers.findByPk(id, {
-                include: Teams,
-            });
-
+            const driverDB = await Drivers.findByPk(id);
             if(driverDB) return driverDB;
-
+            
         }
 
         const response = await axios.get(`http://localhost:5000/drivers`);

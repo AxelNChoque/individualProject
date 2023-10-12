@@ -3,7 +3,7 @@ import style from './home.module.css';
 import Navbar from "../../components/Navbar/Navbar";
 import Cards from "../../components/Cards/Cards";
 import { useDispatch, useSelector } from "react-redux";
-import { filter, getDrivers, getTeams, orderDrivers, paginate } from "../../redux/actions/actions";
+import { filter, getDrivers, getTeams, orderDrivers, paginate, searchDriver } from "../../redux/actions/actions";
 
 const Home = () => {
 
@@ -32,12 +32,16 @@ const Home = () => {
     const order = event => {
         dispatch(orderDrivers(event));
     }
+    const search = (e) => {
+        dispatch(searchDriver(e));
+    }
 
     return (
         <div className={style.containter}>
 
             <div className={style.navbarBox}>
                 <Navbar
+                    search={search}
                     allTeams={allTeams}
                     filter={filterPerTeam}
                     order={order}
@@ -48,9 +52,12 @@ const Home = () => {
                 <Cards drivers={currentDrivers} />
             </div>
 
-            <div>
+            <div
+                className={style.buttonsContainer}
+            >
 
                 <button 
+                    className={style.button}
                     name='prev' 
                     onClick={paginateDrivers}
                 >
@@ -58,6 +65,7 @@ const Home = () => {
                 </button>
             
                 <button 
+                    className={style.button}
                     name='next' 
                     onClick={paginateDrivers}
                 >

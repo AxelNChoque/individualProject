@@ -1,4 +1,4 @@
-import { ADD_DRIVER, REMOVE_DRIVER, ORDER, GET_DRIVERS, GET_TEAMS, PAGINATE, FILTER, DETAIL } from "./actions-types";
+import { ADD_DRIVER, REMOVE_DRIVER, ORDER, GET_DRIVERS, GET_TEAMS, PAGINATE, FILTER, DETAIL, SEARCH_NAME } from "./actions-types";
 import axios from 'axios';
 
 export const addDriver = (state) => {
@@ -12,7 +12,7 @@ export const addDriver = (state) => {
                 payload: data,
             })
         } catch(err) {
-            alert('Error adding driver');
+            alert(`Error adding driver: ${err}`);
         }
     }
 }
@@ -43,8 +43,8 @@ export const getDrivers = () => {
                 type:GET_DRIVERS,
                 payload: data,
             });
-        } catch(error) {
-            alert('Error charging drivers');
+        } catch(err) {
+            alert(`Error charging drivers: ${err}`);
         }
     }
 }
@@ -59,8 +59,8 @@ export const getTeams = () => {
                 type:GET_TEAMS,
                 payload:data,
             });
-        } catch(error){
-            alert('Error charging teams');
+        } catch(err){
+            alert(`Error charging teams: ${err}`);
         }
     }
 }
@@ -115,7 +115,22 @@ export const detailDriver = id => {
                 payload: data,
             })
         }catch (err) {
-            alert(err);
+            alert(err)
+        }
+    }
+}
+export const searchDriver = input => {
+    const endpoint = `http://localhost:5000/drivers?name=${input}`;
+    return async dispatch => {
+        try {
+            const response = await axios.get(endpoint);
+            const { data } = response;
+            return dispatch({
+                type: SEARCH_NAME,
+                payload:data
+            })
+        } catch(err) {
+            alert(`Error searching driver: ${err.response.status}`);
         }
     }
 }

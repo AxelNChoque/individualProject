@@ -1,10 +1,11 @@
 .formContainer {
     width: 100%;
     height: 100vh;
-
+    background-color: #000000;
 }
 
 .menuContainer{
+    margin-top: 2rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -12,8 +13,10 @@
 .form {
     width: 35rem;
     padding: 20px;
-    background-color: red;
-    height: 40rem; 
+    background-color: #101010;
+    height: 45rem; 
+    border-radius: 1.5rem;
+    color: #E4E6EB;
 }
 
 .form .completeName {
@@ -28,30 +31,65 @@
 
 .form .buttons {
     height: 1rem;
-
     display: grid;
     grid-template-columns: 1fr 1fr ;
     grid-gap:10px;
+    margin-bottom: 1rem;
     
 
 }
 
-.form input,
-.form select {
+.form input {
  
     width: 100%;
     
-}
-.form input,
-.form label,
-.form select {
-    margin-top: 15px;
 }
 
 
 .desc {
     height: 3rem;
 }
-.form .title {
-    margin-top: 10rem;
+.navlink {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 1rem;
+}
+.button {
+    font-size: 1rem;
+    padding: 6px;
+    background-color: #FFFFFF;
+    border: none;
+    border-radius: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+.submitBut{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        left: 47%;
+        bottom: 11%;
+        border-radius: 1rem;
+        border: none;
+        font-weight: bold;
+        font-size: 1rem;
+        cursor: pointer;
+}
+.selects {
+    margin-bottom: 5px;
+        width: 50%;
+}
+.selectsBox {
+        display: flex;
+            flex-direction: column;
+            align-items: center;
+}
+.errors {
+    text-align: center;
+    color:#B3B3B3
+}
+.title{
+    font-size: 20px;
 }

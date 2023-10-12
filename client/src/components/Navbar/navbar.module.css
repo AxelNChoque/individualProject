@@ -1,0 +1,23 @@
+.newDriverButton{
+    display: flex;
+    align-items: center;
+}
+.logo   {
+    margin: 1rem 1rem 1rem 2rem;
+}
+.buttonContainer {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    margin-right: 14rem;}
+.button {
+    cursor: pointer;
+    border-radius: 1rem;
+    font-size: 1.5rem;
+    border: none;
+}
+.searchFilterContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

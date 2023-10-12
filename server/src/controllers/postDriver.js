@@ -8,7 +8,17 @@ const postDriver = async ( name,
     nationality,
     dob,
     teams ) => {
-        const newDriver = await Drivers.create({
+        let newDriver;
+        if(image === ''){
+            newDriver = await Drivers.create({
+            name,
+            surname,
+            description,
+            nationality,
+            dob
+        });
+        } else {
+            newDriver = await Drivers.create({
             name,
             surname,
             description,
@@ -16,6 +26,8 @@ const postDriver = async ( name,
             nationality,
             dob
         });
+        }
+        
 
         teams.forEach(async (team) => {
             const teamsDB = await Teams.findOne({

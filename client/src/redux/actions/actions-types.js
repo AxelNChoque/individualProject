@@ -5,4 +5,5 @@ export const GET_DRIVERS = 'GET_DRIVERS';
 export const GET_TEAMS = 'GET_TEAMS';
 export const PAGINATE = 'PAGINATE';
 export const FILTER = 'FILTER';
-export const DETAIL = 'DETAIL'
+export const DETAIL = 'DETAIL';
+export const SEARCH_NAME = 'SEARCH_DRIVER';

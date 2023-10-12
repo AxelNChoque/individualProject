@@ -1,4 +1,5 @@
 import React from "react";
+import style from './filters.module.css'
 
 const Filters = ({allTeams, filter, order}) => {
 
@@ -13,8 +14,11 @@ const Filters = ({allTeams, filter, order}) => {
     }
 
     return(
-        <div>
+        <div
+            className={style.filterContainer}
+        >
             <select
+                className={style.filter}
                 onChange={handleTeamChange}
             >
                 <option value=''>Select Team</option>
@@ -25,6 +29,7 @@ const Filters = ({allTeams, filter, order}) => {
                     }
             </select>
             <select
+                className={style.order}
                 onChange={handleOrder}
             >
                 <option

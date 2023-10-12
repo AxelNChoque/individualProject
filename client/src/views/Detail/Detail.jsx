@@ -13,11 +13,12 @@ const Detail = () => {
 
     }, [dispatch]);
     const driver = useSelector(state => state.driver);
+    console.log(driver);
     const driverArray = [];
     driverArray.push(driver);
-    console.log(driverArray);
     const newDriver = normalizeDrivers(driverArray);
     const finalDriver = newDriver[0];
+    
     
         if (!newDriver) {
         return <div>Loading...</div>;

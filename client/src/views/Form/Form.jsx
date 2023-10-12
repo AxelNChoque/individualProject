@@ -150,12 +150,18 @@ const Form = () => {
 
     return(
         <div className={style.formContainer}>
-
-            <NavLink
+            <div
+                className={style.navlink}
+            >
+                <NavLink
                 to='/home'
             >
-                <button>Home</button>
+                <button
+                    className={style.button}
+                >Home</button>
             </NavLink>
+            </div>
+            
             <div
                 className={style.menuContainer}
             >
@@ -182,7 +188,7 @@ const Form = () => {
                     value={newDriver.name}
                 />
                 {
-                    <label className={style.errors}> {errors.name || "\u00A0"} </label>
+                    <p className={style.errors}> {errors.name || "\u00A0"} </p>
                 }
 
                     </div>
@@ -203,7 +209,7 @@ const Form = () => {
                 />
 
                 {
-                    <label className={style.errors}> {errors.surname || "\u00A0"} </label>
+                    <p className={style.errors}> {errors.surname || "\u00A0"} </p>
                 }
                     </div>
                 </div>
@@ -220,7 +226,7 @@ const Form = () => {
                     value={newDriver.nationality}
                 />
                 {
-                    <label className={style.errors}> {errors.nationality || "\u00A0"} </label>
+                    <p className={style.errors}> {errors.nationality || "\u00A0"} </p>
                 }
                 <label
                     className={style.title}
@@ -235,7 +241,7 @@ const Form = () => {
                 />
 
                 {
-                    <label className={style.errors}> {errors.image || "\u00A0"} </label>
+                    <p className={style.errors}> {errors.image || "\u00A0"} </p>
                 }
                 <label
                     className={style.title}
@@ -249,7 +255,7 @@ const Form = () => {
                     value={newDriver.dob}
                 />
                 {
-                    <label className={style.errors}> {errors.dob || "\u00A0"} </label>
+                    <p className={style.errors}> {errors.dob || "\u00A0"} </p>
                 }                
 
                 <label
@@ -265,7 +271,7 @@ const Form = () => {
                     value={newDriver.description}
                 />
                 {
-                    <label className={style.errors}> {errors.description || "\u00A0"} </label>
+                    <p className={style.errors}> {errors.description || "\u00A0"} </p>
                 }
 
                 <div className= {style.buttons}>
@@ -278,13 +284,17 @@ const Form = () => {
                     onClick={countHandler}
                 >+</button>
                 </div>
-                {
+                <div
+                    className={style.selectsBox}
+                >
+                    {
                     Array.from({ length: quantityTeams }, (_, index) => (
                         <select
                             key={index}
                             name={`team${index}`}
                             onChange={changeHandler}
                             value={newDriver.teams[index]}
+                            className={style.selects}
                         >
                             <option value=''>Select Team</option>
                             {
@@ -295,11 +305,13 @@ const Form = () => {
                         </select>
                     ))
                 }   
+                </div>
 
                 {
-                    <label className={style.errors}> {errors.teams || "\u00A0"} </label>
+                    <p className={style.errors}> {errors.teams || "\u00A0"} </p>
                 }
                 <button 
+                className={style.submitBut}
                 type="submit"
                 >
                     Create Driver

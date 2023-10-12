@@ -1,0 +1,19 @@
+.filterContainer {
+    display: flex;
+    justify-content: center;
+    margin: 1rem;
+}
+.filter {
+    padding: 5px;
+    margin-right: 1rem;
+    border-radius: 1rem;
+    border: none;
+    outline: none;
+}
+
+.order {
+    padding: 5px;
+    border-radius: 1rem;
+    border: none;
+    outline: none;
+}
