@@ -109,27 +109,6 @@ const rootReducer = (state= initialState, action) => {
                 drivers: [...state.allDrivers].splice(firstIndex,items),
                 currentPage: action.payload === "next"? nextPage : prevPage
             }
-
-            // const firstIndex = action.payload === 'next' ? nextPage * items : prevPage * items; 
-            
-
-            // if(state.filteredDrivers) {
-            //     const last = (firstIndex + items) >= state.filteredDrivers.length;
-            //     return({
-            //     ...state,
-            //     lastPage: last,
-            //     drivers: [...state.filteredDrivers].splice(firstIndex,items),
-            //     currentPage: action.payload === 'next' ? nextPage : prevPage
-            // })
-            // }
-            // const last = (firstIndex + items) >= state.allDrivers.length;
-
-            // return({
-            //     ...state,
-            //     lastPage: last,
-            //     drivers: [...state.allDrivers].splice(firstIndex,items),
-            //     currentPage: action.payload === 'next' ? nextPage : prevPage
-            // })
         case FILTER:
             
             let driverss = [];
@@ -157,41 +136,13 @@ const rootReducer = (state= initialState, action) => {
 
                 const filteredDrivers = driverss.filter(driver => {
                     if (driver.Teams) {
-                        // driver.Teams.filter(tea => {
-                        //     return  tea.name.includes(team)
-                        //  });
                         return driver.Teams.some(tea => tea.name.includes(team));
                     }else if (driver.teams !== undefined) {
-                        // let teams = driver.teams.split(", ").map(team => team.trim());
-                        // return teams.filter(te => te.includes(team))
                         const teams = driver.teams.split(", ").map(te => te.trim());
                         return teams.some(te => te.includes(team));
                     }
                     
                 });
-            
-
-
-            // const filtered = normalizedDrivers.filter(driver =>{
-            //     const teamsDriver = driver.teams.filter(tea => tea.includes(team))
-            //     if(teamsDriver.length !=== 0){
-            //         return true
-            //     } else {
-            //         return false;
-            //     }
-            // });
-
-            // const filteredDrivers = state.allDrivers.filter(driver => {
-            //     if(driver.teams !== undefined){
-            //         return driver.teams.includes(team);
-            //     } else if (driver.Teams !== undefined){
-            //         const filtDriver = driver.Teams.filter(team => team.name.includes(team));
-            //         return filtDriver.length !== 0 ? true : false;
-            //     } else {
-            //         return false;
-            //     }
-            // });
-
             return({
                 ...state,
                 drivers: filteredDrivers.slice(0,items),
@@ -247,7 +198,11 @@ const rootReducer = (state= initialState, action) => {
                     
                     if(prevv.toLowerCase() > nextt.toLowerCase()) return 1;
                     if(prevv.toLowerCase() < nextt.toLowerCase()) return -1;
-                    return 0;
+                    const prevYear = new Date(prev.dob).getFullYear();
+                    const nextYear = new Date(next.dob).getFullYear();
+
+                    return prevYear - nextYear;
+                    
                 })
             }
             if(action.payload === "des"){
@@ -267,9 +222,14 @@ const rootReducer = (state= initialState, action) => {
                     }
                     
                     if(prevv.toLowerCase() > nextt.toLowerCase()) return -1;
-                    if(prevv.toLowerCase() < nextt.toLowerCase()) return +1;
-                    return 0;
-                })
+                    if(prevv.toLowerCase() < nextt.toLowerCase()) return 1;
+                    const prevYear = new Date(prev.dob).getFullYear();
+                    const nextYear = new Date(next.dob).getFullYear();
+
+                    return nextYear - prevYear;
+        }
+                    
+                )
             }
     
         return{
@@ -281,59 +241,6 @@ const rootReducer = (state= initialState, action) => {
             orderedDrivers: orderByName,
             search:false
         }
-
-
-
-
-
-
-            // console.log(ordOrder);
-            // const normDrivers = async () => {
-            //     let normalizedDrivers =   await normalizeDrivers(allDriverss);
-            //     if(ordOrder === 'asc' ) {
-            //         let orderedByName = normalizedDrivers.sort((prev,next) => {
-            //             if(prev.name > next.name) return -1;
-            //             if(prev.name < next.name) return 1;
-            //             const prevYear = new Date(prev.dob).getFullYear();
-            //             const nextYear = new Date(next.dob).getFullYear();
-
-            //             return prevYear - nextYear;
-            //         })
-
-            //         return({
-            //             ...state,
-            //             drivers:orderedByName.slice(0,items),
-            //             allDrivers: [...state.allDrivers],
-            //         })
-            //     } else if (ordOrder === 'des') {
-            //         let orderedByName = normalizedDrivers.sort((prev,next) => {
-            //             if(prev.name > next.name) return 1;
-            //             if(prev.name < next.name) return -1;
-            //             const prevYear = new Date(prev.dob).getFullYear();
-            //             const nextYear = new Date(next.dob).getFullYear();
-
-            //             return prevYear - nextYear;
-            //         })
-            //         return({
-            //             ...state,
-            //             drivers:orderedByName.slice(0,items),
-            //             allDrivers: [...state.allDrivers],
-            //         })
-            //     } else {
-            //         return ({
-            //             ...state,
-            //             drivers: [...state.allDrivers]
-            //         })
-            //     }
-                
-            // };
-            // const orderedDrivers = normDrivers();
-                
-            // console.log(orderedDrivers)
-            
-
-            //     return({...state})
-
         default:
             return state;
     }
