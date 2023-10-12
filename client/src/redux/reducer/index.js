@@ -35,6 +35,9 @@ const rootReducer = (state= initialState, action) => {
                 const firstDriverIndex = lastDriverIndex - items + 1;
                 const paginatedDrivers = action.payload.slice(firstDriverIndex, lastDriverIndex + 1);
             
+
+
+
                 return {
                     ...state,
                     drivers: paginatedDrivers,
@@ -58,7 +61,7 @@ const rootReducer = (state= initialState, action) => {
                 ...state,
                 drivers: searched.slice(0,items),
                 searchedDrivers: searched,
-                search:true
+                search:true,
             })
         case PAGINATE:
             const nextPage = state.currentPage + 1;
@@ -72,7 +75,7 @@ const rootReducer = (state= initialState, action) => {
                 return{
                     ...state,
                     drivers: [...state.searchedDrivers].splice(firstIndex,items),
-                    currentPage: action.payload === "next"? nextPage : prevPage
+                    currentPage: action.payload === "next"? nextPage : prevPage,
                 }
             }
 
@@ -87,7 +90,16 @@ const rootReducer = (state= initialState, action) => {
                     currentPage: action.payload === "next"? nextPage : prevPage
                 }
             }
+            if(state.order) {
+                if(action.payload === "next" && firstIndex >= state.orderedDrivers.length) return state
+                else if(action.payload === "prev" && prevPage < 0) return state
 
+                return{
+                    ...state,
+                    drivers: [...state.orderedDrivers].splice(firstIndex,items),
+                    currentPage: action.payload === "next"? nextPage : prevPage
+            }
+        }
 
             if(action.payload === "next" && firstIndex >= state.allDrivers.length) return state
             else if(action.payload === "prev" && prevPage < 0) return state
@@ -128,7 +140,8 @@ const rootReducer = (state= initialState, action) => {
                 ...state,
                 drivers: state.orderedDrivers.slice(0,items),
                 filter: false,
-                search:false
+                search:false,
+                currentPage: 0,
             };
             } else {
                 driverss = [...state.allDriversBackUp];
@@ -136,7 +149,8 @@ const rootReducer = (state= initialState, action) => {
                 ...state,
                 drivers: state.allDriversBackUp.slice(0,items),
                 filter: false,
-                search:false
+                search:false,
+                currentPage: 0,
             };
             }
 
@@ -183,7 +197,8 @@ const rootReducer = (state= initialState, action) => {
                 drivers: filteredDrivers.slice(0,items),
                 filteredDrivers: filteredDrivers,
                 filter:true,
-                search:false
+                search:false,
+                currentPage: 0,
             })
 
         case ORDER:

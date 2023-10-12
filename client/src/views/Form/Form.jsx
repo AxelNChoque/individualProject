@@ -19,6 +19,7 @@ const Form = () => {
         dob:'',
         description:'',
         teams:'',
+        null:'true'
     })
     const initialState = {
         name: '',
@@ -38,6 +39,7 @@ const Form = () => {
         dob: '',
         description: '',
         teams: '',
+        null:'true'
     };
 
 
@@ -78,7 +80,8 @@ const Form = () => {
                 setErrors(
                     validate({
                         ...newDriver,
-                        teams: [...uniqueMemoryValues]
+                        teams: [...uniqueMemoryValues],
+                        null:''
                     })
                 )
                 return updatedMemory;
@@ -92,7 +95,8 @@ const Form = () => {
             setErrors(
                 validate({
                     ...newDriver,
-                    [event.target.name]: event.target.value
+                    [event.target.name]: event.target.value,
+                    null:''
                 })
             )
         }
@@ -119,12 +123,7 @@ const Form = () => {
     const submitHandler = event => {
         event.preventDefault();
         setNewDriver({ ...newDriver, teams: newDriver.teams.slice(0, quantityTeams) })
-        setErrors(
-            validate({
-                ...newDriver,
-                teams:[...newDriver.teams]
-            })
-        )
+
         let errorFLag = false;
 
         for(let error in errors){

@@ -4,8 +4,6 @@ import style from './card.module.css';
 
 const Card = (props) => {
     const { id, name, surname, image, nationality, teams} = props;
-    console.log(id);
-    console.log(teams);
     return(
         <div className={style.container}>
             <NavLink

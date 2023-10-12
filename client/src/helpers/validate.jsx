@@ -1,5 +1,6 @@
 const validate = (input) => {
-    let error = {};
+    let error = {
+    };
     //name
     if(input.name.length > 30){
         error.name = "Name must be 30 characters or fewer.";
@@ -30,8 +31,8 @@ const validate = (input) => {
     } else {
         const dob = new Date(input.dob);
         
-        if (dob.getFullYear() < 1500 || dob.getFullYear() > 2008) {
-            error.dob = "Year must be between 1500 and 2008";
+        if (dob.getFullYear() < 1900 || dob.getFullYear() > 2008) {
+            error.dob = "Year must be between 1900 and 2008";
         }
 
         if (dob.getMonth() < 0 || dob.getMonth() > 11) {

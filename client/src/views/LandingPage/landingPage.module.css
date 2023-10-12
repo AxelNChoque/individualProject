@@ -1,9 +1,36 @@
 .container {
-    background-color: grey; 
+    background-color: #000000; 
     height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    font-family: 'Inter UI', sans-serif;
     margin: 0;
     padding: 0;
   }
+.logoContainer {
+  height: 60%;
+  width: 100%;
+      display: flex;
+        justify-content: center;
+        align-items: center;
+  
+}
+.logo {
+  height: 20rem;
+}
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.but{
+  background-color: red;
+    border: none;
+    cursor: pointer;
+    padding: 2rem;
+    font-size: 1.8rem;
+    font-weight: bold;
+
+    border-radius: 2rem;
+}
+.but:hover {
+  transform: scale(1.02);
+}
