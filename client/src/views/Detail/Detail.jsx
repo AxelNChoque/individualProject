@@ -14,7 +14,6 @@ const Detail = () => {
 
     }, [dispatch]);
     const driver = useSelector(state => state.driver);
-    console.log(driver);
     const driverArray = [];
     driverArray.push(driver);
     const newDriver = normalizeDrivers(driverArray);

@@ -15,9 +15,16 @@
     border-radius: 1rem;
     font-size: 1.5rem;
     border: none;
+    transition: all 0.1s ease;
 }
 .searchFilterContainer {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.button:hover {
+    background-color: #C1BBBB;
+    transform: scale(1.03);
+
 }

@@ -16,16 +16,36 @@
         border: 1px solid #393A3B;
 }
 .desc{
-    font-size: 0.9rem;
+    font-size: 1rem;
     color:#B3B3A4;
     cursor: default;
     margin-right: 100px;
+    display: column;
     text-align: center;
+    align-items: center;
+    margin-left: 1.5rem;
+    width: 12rem;
     
 }
 
 .name {
     color: #E4E6EB;
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     cursor: default;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+
+    margin-top: 10px;
+}
+.descBox {
+    display: column;
+    align-items: center;
+    justify-content: center;
+    height: 13rem;
+    width: 15rem;
+    margin-right: 2rem;
+    text-align: center;
+
 }

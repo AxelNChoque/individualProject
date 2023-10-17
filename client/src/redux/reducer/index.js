@@ -136,6 +136,7 @@ const rootReducer = (state = initialState, action) => {
     case FILTER:
       let driverss = [];
       const team = action.payload;
+      let filteredDrivers = "";
       if (state.order) {
         driverss = [...state.allDriversBackUp];
         if (team === "")
@@ -157,15 +158,29 @@ const rootReducer = (state = initialState, action) => {
             currentPage: 0,
           };
       }
+      if (team === "api") {
+        filteredDrivers = driverss.filter((driver) => {
+          if (driver.surname) {
+            return driver;
+          }
+        });
+      } else if (team === "db") {
+        filteredDrivers = driverss.filter((driver) => {
+          if (driver.name.surname) {
+            return driver;
+          }
+        });
+      } else {
+        filteredDrivers = driverss.filter((driver) => {
+          if (driver.Teams) {
+            return driver.Teams.some((tea) => tea.name.includes(team));
+          } else if (driver.teams !== undefined) {
+            const teams = driver.teams.split(", ").map((te) => te.trim());
+            return teams.some((te) => te.includes(team));
+          }
+        });
+      }
 
-      const filteredDrivers = driverss.filter((driver) => {
-        if (driver.Teams) {
-          return driver.Teams.some((tea) => tea.name.includes(team));
-        } else if (driver.teams !== undefined) {
-          const teams = driver.teams.split(", ").map((te) => te.trim());
-          return teams.some((te) => te.includes(team));
-        }
-      });
       return {
         ...state,
         drivers: filteredDrivers.slice(0, items),

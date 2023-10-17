@@ -26,7 +26,14 @@ const Filters = ({allTeams, filter, order, filter2}) => {
                 className={style.filter}
                 onChange={handleTeamChange}
             >
-                <option value=''>Select Team</option>
+                <option value=''>Select filter</option>
+                <option
+                    value='api'
+                >Api</option>
+                <option
+                    value='db'
+                >DB</option>
+
                     {
                         allTeams.map(team => {
                         return <option key={team} value={team}>{team}</option>
@@ -59,15 +66,7 @@ const Filters = ({allTeams, filter, order, filter2}) => {
                     &#8595; DoB
                     </option>
             </select>
-            <select>
-                <option> - </option>
-                <option
-                    value='api'
-                >Api</option>
-                <option
-                    value='db'
-                >DB</option>
-            </select>
+
         </div>
     )
 }

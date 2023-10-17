@@ -63,6 +63,8 @@
     border-radius: 1rem;
     font-weight: bold;
     cursor: pointer;
+    transition: all 0.1s ease;
+    
 }
 .submitBut{
         display: flex;
@@ -76,6 +78,7 @@
         font-weight: bold;
         font-size: 1rem;
         cursor: pointer;
+        transition: all 0.1s ease;
 }
 .selects {
     margin-bottom: 5px;
@@ -92,4 +95,11 @@
 }
 .title{
     font-size: 20px;
+}
+
+.submitBut:hover,
+.button:hover {
+    background-color: #C1BBBB;
+    transform: scale(1.03);
+
 }

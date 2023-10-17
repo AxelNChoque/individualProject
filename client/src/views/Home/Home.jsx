@@ -17,7 +17,7 @@ const Home = () => {
         dispatch(getTeams());
     }, [dispatch]);
 
-    if (!Array.isArray(currentDrivers) || currentDrivers.length === 0) {
+    if (!Array.isArray(currentDrivers)) {
         return <div>Loading...</div>;
 
     }
@@ -25,10 +25,6 @@ const Home = () => {
     const filterPerTeam = event => {
         dispatch(filter(event));
     }
-    const filterPerInf = event => {
-        dispatch();
-    }
-    
 
     const paginateDrivers = event => {
         dispatch(paginate(event.target.name));
@@ -51,7 +47,6 @@ const Home = () => {
                     allTeams={allTeams}
                     filter={filterPerTeam}
                     order={order}
-                    filter2={filterPerInf}
                     
                 ></Navbar>
             </div>

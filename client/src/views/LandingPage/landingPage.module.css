@@ -28,8 +28,8 @@
     padding: 2rem;
     font-size: 1.8rem;
     font-weight: bold;
-
     border-radius: 2rem;
+    transition: all 0.2s ease;
 }
 .but:hover {
   transform: scale(1.02);
