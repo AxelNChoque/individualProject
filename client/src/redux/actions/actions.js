@@ -7,7 +7,6 @@ import {
   FILTER,
   DETAIL,
   SEARCH_NAME,
-  RENDERTEAMS,
 } from "./actions-types";
 import axios from "axios";
 
