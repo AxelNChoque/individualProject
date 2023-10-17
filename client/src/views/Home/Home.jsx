@@ -11,6 +11,7 @@ const Home = () => {
 
     const currentDrivers = useSelector(state => state.drivers);
     const allTeams = useSelector(state => state.teams);
+    const currentPage = useSelector(state => state.currentPage) +1;
     useEffect(() => {
         dispatch(getDrivers());
         dispatch(getTeams());
@@ -23,6 +24,9 @@ const Home = () => {
 
     const filterPerTeam = event => {
         dispatch(filter(event));
+    }
+    const filterPerInf = event => {
+        dispatch();
     }
     
 
@@ -47,6 +51,8 @@ const Home = () => {
                     allTeams={allTeams}
                     filter={filterPerTeam}
                     order={order}
+                    filter2={filterPerInf}
+                    
                 ></Navbar>
             </div>
 
@@ -65,6 +71,9 @@ const Home = () => {
                 >
                     -
                 </button>
+                <p
+                    className={style.currentpage}
+                >{currentPage}</p>
             
                 <button 
                     className={style.button}

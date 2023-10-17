@@ -4,16 +4,21 @@ const validate = (input) => {
     //name
     if(input.name.length > 30){
         error.name = "Name must be 30 characters or fewer.";
+    } else if (!/^[A-Za-záéíóúüñÁÉÍÓÚÜÑ\s]+$/.test(input.name)) {
+        error.name = "Name cannot contain numbers or special characters.";
     }
     if(input.name.length === 0){
         error.name = "Name field cannot be empty";
     }
+
     //surname
     if(input.surname.length > 30){
         error.surname = "Name must be 30 characters or fewer.";
     }
     if(input.surname.length === 0){
         error.surname = "Surname field cannot be empty";
+    } else if (!/^[A-Za-záéíóúüñÁÉÍÓÚÜÑ\s]+$/.test(input.surname)) {
+        error.surname = "Surname cannot contain numbers or special characters.";
     }
     //nat
     if(input.nationality.length > 30){
@@ -21,6 +26,8 @@ const validate = (input) => {
     }
     if(input.nationality.length === 0){
         error.nationality = "Nationality field cannot be empty";
+    } else if (!/^[A-Za-záéíóúüñÁÉÍÓÚÜÑ\s]+$/.test(input.nationality)) {
+        error.nationality = "Nationality cannot contain numbers or special characters.";
     }
 
     //img

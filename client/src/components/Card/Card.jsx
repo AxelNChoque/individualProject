@@ -3,7 +3,11 @@ import { NavLink } from "react-router-dom";
 import style from './card.module.css';
 
 const Card = (props) => {
-    const { id, name, surname, image, nationality, teams} = props;
+    const { id, name, surname, image, nationality, teams, dob} = props;
+    let dobWithoutHour = dob;
+    if(dob.length > 10){
+        dobWithoutHour = dob.substring(0,10); 
+    }
     return(
         <div className={style.container}>
             <NavLink
@@ -18,8 +22,9 @@ const Card = (props) => {
             <div
                 className={style.desc}
             >
-                
+            
             <p>{nationality}</p>
+            <p>{dobWithoutHour}</p>
 
                 <p>
                 {

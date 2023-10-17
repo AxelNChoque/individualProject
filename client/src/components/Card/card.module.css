@@ -13,9 +13,10 @@
     width:  10rem;
     height: 12rem;
     border-radius: 2rem;
+        border: 1px solid #393A3B;
 }
 .desc{
-    font-size: 1rem;
+    font-size: 0.9rem;
     color:#B3B3A4;
     cursor: default;
     margin-right: 100px;

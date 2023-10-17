@@ -19,6 +19,7 @@ const Cards = ({drivers}) => {
                         nationality= {driver.nationality}
                         image = {driver.image}
                         teams = {driver.teams}
+                        dob = {driver.dob}
                     />
                 })
             }

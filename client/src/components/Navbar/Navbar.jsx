@@ -6,7 +6,7 @@ import { NavLink } from "react-router-dom";
 import F1Logo from "../../assets/F1.svg";
 
 
-const Navbar = ({allTeams, filter, order, search}) => {
+const Navbar = ({allTeams, filter, order, search, filter2}) => {
     return(
         <div>
 
@@ -45,6 +45,7 @@ const Navbar = ({allTeams, filter, order, search}) => {
                     allTeams = {allTeams}
                     filter = {filter}
                     order = {order}
+                    filter2 = {filter2}
                 />
             </div>
             

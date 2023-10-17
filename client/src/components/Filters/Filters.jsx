@@ -1,7 +1,7 @@
 import React from "react";
 import style from './filters.module.css'
 
-const Filters = ({allTeams, filter, order}) => {
+const Filters = ({allTeams, filter, order, filter2}) => {
 
     const handleTeamChange = event => {
         const selectedTeam = event.target.value;
@@ -11,6 +11,11 @@ const Filters = ({allTeams, filter, order}) => {
     const handleOrder = event => {
         const ord = event.target.value;
         order(ord);
+    }
+
+    const handleApiChange = event => {
+        const selectedDB = event.target.value;
+        filter2(selectedDB)
     }
 
     return(
@@ -47,6 +52,21 @@ const Filters = ({allTeams, filter, order}) => {
                 >
                     Z-A
                 </option>
+                <option value="ascDOB">
+                    &#8593; DoB
+                    </option>
+                <option value="descDOB">
+                    &#8595; DoB
+                    </option>
+            </select>
+            <select>
+                <option> - </option>
+                <option
+                    value='api'
+                >Api</option>
+                <option
+                    value='db'
+                >DB</option>
             </select>
         </div>
     )
