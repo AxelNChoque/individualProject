@@ -38,6 +38,7 @@ const Home = () => {
 
     const normalizedCurrentDrivers = normalizeDrivers(currentDrivers);
 
+
     return (
         <div className={style.containter}>
 
