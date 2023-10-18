@@ -22,7 +22,7 @@ const LandingPage = () => {
             >
                 <button
                     className={style.but}
-                >Click here!</button>
+                >Start</button>
             </NavLink>
             </div>
             
