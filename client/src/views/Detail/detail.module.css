@@ -10,6 +10,7 @@
     border-radius: 1rem;
     font-weight: bold;
     cursor: pointer;
+    transition: all 0.1s ease;
 }
 .nav {
     background-color: #121212;
@@ -68,3 +69,9 @@
     justify-content: center;
     padding: 3px;
 }
+
+.button:hover {
+    background-color: #C1BBBB;
+    transform: scale(1.03);
+
+}   
