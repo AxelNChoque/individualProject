@@ -29,7 +29,7 @@ const Filters = ({allTeams, filter, order, filter2}) => {
                 <option value=''>Select filter</option>
                 <option
                     value='api'
-                >Api</option>
+                >API</option>
                 <option
                     value='db'
                 >DB</option>

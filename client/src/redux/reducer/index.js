@@ -158,13 +158,13 @@ const rootReducer = (state = initialState, action) => {
             currentPage: 0,
           };
       }
-      if (team === "api") {
+      if (team === "db") {
         filteredDrivers = driverss.filter((driver) => {
           if (driver.surname) {
             return driver;
           }
         });
-      } else if (team === "db") {
+      } else if (team === "api") {
         filteredDrivers = driverss.filter((driver) => {
           if (driver.name.surname) {
             return driver;
